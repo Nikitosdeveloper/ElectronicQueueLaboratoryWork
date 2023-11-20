@@ -1,4 +1,5 @@
-using ElectronicQuere;
+using ElectronicQuere.DataBaseModel;
+using ElectronicQueue;
 using System.Diagnostics.Eventing.Reader;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,7 +74,6 @@ using (var context = new Repository())
 		SecondName = "Никонович",
 		FatheredName = "Евгеньевич",
 		StudentNumber = 129323923,
-		GroupNumber = 10234,
 		Login = "abababab",
 		Password = "213i035u8358",
 		LaboratoryWorks = Labs

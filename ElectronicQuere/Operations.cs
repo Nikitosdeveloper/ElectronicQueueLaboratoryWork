@@ -1,14 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ElectronicQuere.DataBaseModel;
+using Microsoft.EntityFrameworkCore;
 
-namespace ElectronicQuere
+namespace ElectronicQueue
 {
-	public class Operations
+    public class Operations
 	{
 		public static int Create(Student student)
 		{
 			int newId = 0;
+			
+
 			using (Repository db = new Repository())
 			{
+				var group = db.Groups.OrderByDescending(s => s.Id).First();
+				ICollection<LaboratoryWork> Labs = new List<LaboratoryWork>
+			{
+				new LaboratoryWork
+				{
+					LaboratoryWorkName = "Массивы",
+					IsCompleted = false,
+					TeacherId = group.TeacherId
+				},
+				new LaboratoryWork
+				{
+					LaboratoryWorkName = "Указатели",
+					IsCompleted = false,
+					TeacherId = group.TeacherId
+				}
+			};
+				student.LaboratoryWorks = Labs;
 				db.Students.Add(student);
 				db.SaveChanges();
 				newId = student.Id;
@@ -52,6 +72,18 @@ namespace ElectronicQuere
 					.FirstOrDefault(s=> s.Login == Login);
 			}
 			return student;
+		}
+
+		public static Group? ReadGroup(int Id)
+		{
+			Group? group = null;
+			using (Repository db = new Repository())
+			{
+				group = db.Groups
+					.Include(s => s.Students)
+					.FirstOrDefault(s=>s.Id == Id);
+			}
+			return group;
 		}
 
 		public static void Update(Student student)

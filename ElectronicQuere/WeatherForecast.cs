@@ -1,4 +1,4 @@
-namespace ElectronicQuere
+namespace ElectronicQueue
 {
     public class WeatherForecast
     {

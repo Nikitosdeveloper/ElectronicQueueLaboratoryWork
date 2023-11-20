@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ElectronicQuere.Controllers
+namespace ElectronicQueue.Controllers
 {
     [ApiController]
     [Route("[controller]")]
