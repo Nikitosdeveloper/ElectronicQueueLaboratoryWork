@@ -7,7 +7,7 @@ export const CreateAcc = ({ history }) => {
 
     const handleRegister = async () => {
         try {
-            const registerUrl = 'https://your-api-endpoint.com/register';
+            const registerUrl = 'https://localhost:44414/auth/login';
 
             const response = await axios.post(registerUrl, {
                 username: username,
